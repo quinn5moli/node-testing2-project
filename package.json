@@ -3,10 +3,25 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cross-env NODE_ENV=testing jest --watchALL --runInBand",
+    "start": "node index.js",
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LambdaSchool/node-testing2-project.git"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.14",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "eslint": "^8.4.1",
+    "jest": "^27.4.3",
+    "cross-env": "^7.0.3",
+    "supertest": "^6.1.6"
   }
 }
