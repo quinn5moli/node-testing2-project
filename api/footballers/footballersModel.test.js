@@ -26,4 +26,29 @@ describe('Footballers model', () => {
             expect(footballer).toMatchObject({ id: 1, name: 'Kylian Mbappe' })
         })
     })
+
+    describe('create', () => {
+        it('adds a new Footballer', async () => {
+            const footballer = await Footballers.create({ name: 'Lieke Martens' })
+
+            expect(footballer).toMatchObject({ id: 4, name: 'Lieke Martens' })
+            expect(await db('footballers')).toHaveLength(4)
+        })
+    })
+
+    describe('delete', () => {
+        it('deletes a Footballer', async () => {
+            const deleted = await Footballers.remove(3)
+
+            expect(deleted).toBe(1)
+            expect(await db('footballers')).toHaveLength(2)
+        })
+
+        it('doess not delete if id does not exist', async () => {
+            const deleted = await Footballers.remove(500)
+
+            expect(deleted).toBe(0)
+            expect(await db('footballers')).toHaveLength(3)
+        })
+    })
 })
